@@ -40,9 +40,26 @@ declare(strict_types=1);
                     <form method="post">
                         <div class="field">
                             <label class="label" for="codigo">Código del producto</label>
+
                             <div class="control">
-                                <input class="input" id="codigo" name="codigo"
-                                       placeholder="Ejemplo: P001" required>
+                                <input
+                                    class="input"
+                                    id="codigo"
+                                    name="codigo"
+                                    type="text"
+                                    list="lista-productos"
+                                    placeholder="Escriba o seleccione un producto"
+                                    required
+                                >
+
+                                <datalist id="lista-productos">
+                                    <?php foreach ($productos as $producto): ?>
+                                        <option
+                                            value="<?= htmlspecialchars($producto->getCodigo()) ?>"
+                                            label="<?= htmlspecialchars($producto->getNombre()) ?>"
+                                        >
+                                    <?php endforeach; ?>
+                                </datalist>
                             </div>
                         </div>
 
